@@ -1,60 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="src/css/styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/css/styles.css" />
     <title>Document</title>
-</head>
-<body>
-    <div id="principal">
-      <h1 id="titulo">Pedra, Papel e Tesoura</h1>
-      
-      <div id="placar">
-        <div id="jogador">
-          <h2 id="jogador-nome">Débora</h2>
-          <spam id="jogador-pontos">0</spam>
+    <title>Pedra, Papel e Tesoura</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Pedra, Papel e Tesoura</h1>
+      <p class="subtitle">O clássico jogo de estratégia e sorte</p>
 
-          <ul id="jogador-escolha">
-            <li>
-              <a onclick="jogar(1)" id="jogador-escolha-1"><img src="src/img/pedra.png"></a>
-            </li>
-            <li>
-              <a onclick="jogar(2)" id="jogador-escolha-2"><img src="src/img/papel.png"></a>
-            </li>
-            <li>
-              <a onclick="jogar(3)" id="jogador-escolha-3"><img src="src/img/tesoura.png" alt=""></a>
-            </li>
-          </ul>
-        </div> <!-- Fecha div jogador-->
-        
-        <div id="versus">vs</div>
-        
-        <div id="computador">
-          <h2 id="computador-nome">computador</h2>
-          <spam id="computador-pontos">0</spam>
-
-          <ul id="computador-escolha">
-            <li>
-              <a id="computador-escolha-1"><img src="src/img/pedra.png"></a>
-            </li>
-            <li>
-              <a id="computador-escolha-2"><img src="src/img/papel.png"></a>
-            </li>
-            <li>
-              <a id="computador-escolha-3"><img src="src/img/tesoura.png"></a>
-            </li>
-          </ul>
-        </div> <!-- Fecha div computador-->   
-      </div> <!--Fecha div placar-->
-      
-      <div id="mensagens">
-      
+      <div class="mode-select">
+        <button class="btn" onclick="setMode('cpu')">
+          <i class="fas fa-robot"></i> Jogar contra Máquina
+        </button>
+        <button class="btn" onclick="setMode('pvp')">
+          <i class="fas fa-user-friends"></i> Jogar contra Player 2
+        </button>
       </div>
-    </div> <!--Fecha div principal-->
 
-    <script src="src/js/jogo.js">
-    </script>
-</body>
+      <div id="game-container" class="hidden">
+        <div class="game-area">
+          <div class="player">
+            <h3 id="player1-title">Player 1</h3>
+            <div id="player1" class="choices"></div>
+            <div class="selection">
+              <span id="p1-selection">Escolha: -</span>
+            </div>
+          </div>
+
+          <div class="vs">VS</div>
+
+          <div class="player">
+            <h3 id="player2-title">Player 2</h3>
+            <div id="player2" class="choices"></div>
+            <div class="selection">
+              <span id="p2-selection">Escolha: -</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="result" id="resultado"></div>
+
+        <button
+          id="reset-btn"
+          class="btn reset-btn hidden"
+          onclick="resetGame()"
+        >
+          <i class="fas fa-redo"></i> Jogar Novamente
+        </button>
+      </div>
+    </div>
+  </body>
+  <script src="src/js/jogo.js"></script>
 </html>

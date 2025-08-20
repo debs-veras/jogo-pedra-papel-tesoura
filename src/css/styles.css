@@ -1,98 +1,262 @@
-  *{
-    font-family: Helvetica;
-  }
+:root {
+  --primary: #8a2be2;
+  --secondary: #5d3fd3;
+  --accent: #ffcc70;
+  --dark: #1e1e2f;
+  --light: #ffffff;
+  --success: #7dffb3;
+  --danger: #ff6b6b;
+  --neutral: #9394a5;
+}
 
-  #titulo{
-   color: #0984e3;
-   text-align: center;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  #jogador, #computador{
-    position: relative;
-    flex-grow: 1;
-    border-radius: 5px;
-    width: 200px;
-    padding: 20px;
-    color: #fff;
-  }
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--dark), #2d2d4f);
+  color: var(--light);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
 
-  #jogador{
-    background-color: #ff7675;
-  }
+.container {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+}
 
-  #computador{
-    background-color: #74b9ff;
-  }
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, var(--accent), #ff6b6b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
 
-  #jogador-nome, #computador-nome{
-    margin: 0;
-    padding: 0;
-  }
+.subtitle {
+  color: var(--neutral);
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
 
-  #jogador-nome{
-    text-align: left;
-  }
+.mode-select {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
 
-  #computador-nome{
-    text-align: right;
-  }
+.btn {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(142, 45, 226, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-  #jogador-pontos, #computador-pontos{
-    position: absolute;
-    top: 8px;
-    font-size: 32px;
-  }
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(142, 45, 226, 0.5);
+}
 
-  #jogador-pontos{
-    right: 20px;
-  }
+.btn:active {
+  transform: translateY(1px);
+}
 
-  #versus{
-    font-size: 40px;
-    width: 70px;
-    text-align: center;
-  }
+.game-area {
+  display: grid;
+  grid-template-columns: 1fr 0.1fr 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
 
-  ul#jogador-escolha, ul#computador-escolha{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-  }
-  
-  ul#jogador-escolha li, ul#computador-escolha li{
-    display: inline;
-  }
-  
-  ul#jogador-escolha li a, ul#computador-escolha li a{
-    opacity: .2;
-  }
+.player {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 
-  ul#jogador-escolha li a:hover{
+.player h3 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  color: var(--accent);
+}
+
+.choices {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.choice-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid transparent;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--light);
+}
+
+.choice-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.choice-btn i {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.choice-btn.selected {
+  border-color: var(--accent);
+  background: rgba(255, 204, 112, 0.1);
+  box-shadow: 0 0 15px rgba(255, 204, 112, 0.5);
+}
+
+.choice-btn.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.choice-btn.disabled:hover {
+  transform: none;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.vs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.result {
+  margin-top: 20px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.win {
+  background: rgba(125, 255, 179, 0.1);
+  color: var(--success);
+  box-shadow: 0 0 15px rgba(125, 255, 179, 0.3);
+}
+
+.lose {
+  background: rgba(255, 107, 107, 0.1);
+  color: var(--danger);
+  box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+}
+
+.draw {
+  background: rgba(147, 148, 165, 0.1);
+  color: var(--neutral);
+  box-shadow: 0 0 15px rgba(147, 148, 165, 0.3);
+}
+
+.selection {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.selection span {
+  padding: 5px 15px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hidden {
+  display: none;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
     opacity: 1;
+    transform: translateY(0);
   }
-  ul#jogador-escolha li a.selecionado,ul#computador-escolha li a.selecionado{
-    opacity: 1;
+}
 
-    
+.pulse {
+  animation: pulse 0.6s ease;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.reset-btn {
+  margin-top: 20px;
+  background: linear-gradient(to right, #6c757d, #5a6268);
+}
+
+@media (max-width: 768px) {
+  .game-area {
+    grid-template-columns: 1fr;
   }
 
-
-  ul#jogador-escolha li a img, ul#computador-escolha li a img{
-    max-width: 80px;
-    max-height: 80px;
+  .vs {
+    margin: 10px 0;
   }
-  
-  #placar{
-    display : flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  #mensagens{
-    background-color: #b2bec3;
-    font-size: 32px;
-    border-radius: 5px;
-    margin: 40px 0;
-    padding: 20px
-  }
+}
